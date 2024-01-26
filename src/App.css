@@ -22,6 +22,7 @@ button {
     align-items: center;
     justify-content: center;
     margin: 20px;
+    width: 300px;
 }
 
 .title_textStyle {

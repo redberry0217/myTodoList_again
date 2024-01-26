@@ -11,24 +11,15 @@ function Todo({ todo, setTodo }) {
             });
         }
     }
-    const doneBtnHandler = (item) => {
+    const toggleDoneHandler = (item, isDone) => {
         setTodo((prevTodo) => {
             const updatedTodo = prevTodo.map((todo) =>
-                todo.id === item.id ? { ...todo, isDone: true } : todo
+                todo.id === item.id ? { ...todo, isDone: !todo.isDone } : todo
             );
-            return [...updatedTodo];
+            return updatedTodo;
         });
     }
-    
-    const undoneBtnHandler = (item) => {
-        setTodo((prevTodo) => {
-            const updatedTodo = prevTodo.map((todo) =>
-                todo.id === item.id ? { ...todo, isDone: false } : todo
-            );
-            return [...updatedTodo];
-        });
-    }
- 
+  
   return (
     todo.map(function (item) {
       return (
@@ -40,9 +31,9 @@ function Todo({ todo, setTodo }) {
               <button onClick={() => deleteBtnHandler(item.id)}>삭제하기</button>
               <button onClick={() => {
                 if(item.isDone) {
-                    undoneBtnHandler(item) 
+                  toggleDoneHandler(item, true) 
                 }else{
-                    doneBtnHandler(item)
+                  toggleDoneHandler(item, false)
                 }}}>{!item.isDone ? "완료하기" : "취소하기"}</button>
             </div>
           </div>
